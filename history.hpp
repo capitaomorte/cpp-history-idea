@@ -4,11 +4,23 @@
 #include <string>
 #include <vector>
 
-using object_t = int;
-
-void draw(const object_t& x, std::ostream& out, size_t position){
+void draw(const int& x, std::ostream& out, size_t position){
   out << std::string(position, ' ') << x << std::endl;
 }
+
+class object_t {
+  public:
+  object_t(const int& x) : self_(x)
+  { }
+
+  friend void draw(const object_t& x, std::ostream& out , size_t position) {
+    draw(x.self_,out,position);
+  }
+
+  private:
+  int self_;
+};
+
 
 using document_t = std::vector<object_t>;
 

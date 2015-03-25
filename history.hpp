@@ -16,6 +16,9 @@ class object_t {
   object_t(const object_t& other) : self_(new int_model_t(*(other.self_)))
   { }
 
+  object_t& operator=(const object_t& other) 
+  { auto tmp(other); self_= std::move(tmp.self_); return *this; }
+
   friend void draw(const object_t& x, std::ostream& out , size_t position) {
     x.self_->draw_(out,position);
   }

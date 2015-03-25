@@ -13,6 +13,9 @@ class object_t {
   object_t(const int& x) : self_(new int_model_t(x))
   { }
 
+  object_t(const object_t& other) : self_(new int_model_t(*(other.self_)))
+  { }
+
   friend void draw(const object_t& x, std::ostream& out , size_t position) {
     x.self_->draw_(out,position);
   }
@@ -20,6 +23,7 @@ class object_t {
   private:
   struct int_model_t {
     int_model_t(const int& x) : data_(x) { }
+    
     void draw_(std::ostream& out, size_t position) const {
       draw(data_, out, position);
     }
